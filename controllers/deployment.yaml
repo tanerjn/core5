@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 5gcore-deployment
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: 5gcore
+  template:
+    metadata:
+      labels:
+        app: 5gcore
+    spec:
+      containers:
+      - name: amf
+        image: amf-image:latest
+        # Add container-specific configuration here
+        ports:
+          - containerPort: 8080
+      - name: smf
+        image: smf-image:latest
+        ports:
+          - containerPort: 8080
+        # Add container-specific configuration here
+      # Repeat the same pattern for containers 3-6
